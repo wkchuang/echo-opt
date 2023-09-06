@@ -19,5 +19,6 @@ dependencies:
   - pip
   - pyarrow
   - xgboost
+  - seaborn
   - pip:
     - .

@@ -5,6 +5,7 @@ from echo.src.config import (
 from echo.src.reporting import study_report
 from echo.src.config import recursive_update, recursive_config_reader
 from echo.src.partial_dependence import plot_partial_dependence
+from echo.src import plot_pairwise
 import sys
 import os
 import yaml
@@ -12,6 +13,7 @@ import optuna
 import logging
 import matplotlib as mpl
 import matplotlib.pyplot as plt
+import seaborn as sns
 from argparse import ArgumentParser
 from typing import Dict
 
@@ -340,6 +342,9 @@ def main():
 
     """ Plot the partial dependences"""
     plot_partial_dependence(study.trials_dataframe(), metrics, save_path)
+
+    """ Plot the pairwise relationships"""
+    plot_pairwise(study.trials_dataframe(), hyper_config, save_path)
 
     """ Compute the optuna-supported parameter importances """
     if complete_trials > 1:
